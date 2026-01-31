@@ -162,7 +162,7 @@ function onEnter(el, done) {
   position: absolute;
   left: 50%;
   bottom: 135px;
-  transform: translateX(-50%);
+  transform: translateX(0%);
 }
 
 .popular-car img {

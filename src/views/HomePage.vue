@@ -162,7 +162,7 @@ export default {
         let filtered = store.filter(
           this.filterPrice,
           this.filterBrand,
-          this.filterDiscount
+          this.filterDiscount,
         );
         if (this.query.length > 0) {
           filtered = store.searchCars(this.query, filtered);

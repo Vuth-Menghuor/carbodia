@@ -213,7 +213,9 @@ export default {
   align-items: flex-start;
   gap: 40px;
   padding-bottom: 40px;
+  padding-top: 10px;
   margin: 0 auto;
+  margin-top: 18.72px;
 }
 
 h1 {
@@ -622,7 +624,7 @@ h1 {
 }
 
 .step-connector {
-  width: 60px;
+  width: 100px;
   height: 2px;
   background-color: #e0e0e0;
   flex-shrink: 0;

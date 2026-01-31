@@ -1,56 +1,72 @@
 <template>
   <div class="container">
-    <div class="row-scroll-wrapper">
-      <div class="customer-completed">
-        <CheckCompleted />
-        <label>Customer Details</label>
+    <div class="checkout-steps">
+      <div class="step completed">
+        <div class="step-circle">
+          <span class="step-number">1</span>
+        </div>
+        <span class="step-label">Deposit</span>
       </div>
-      <div class="payment-completed">
-        <span>2</span>
-        <label>Payment</label>
+      <div class="step-connector completed"></div>
+      <div class="step completed">
+        <div class="step-circle">
+          <span class="step-number">2</span>
+        </div>
+        <span class="step-label">Customer Details</span>
+      </div>
+      <div class="step-connector completed"></div>
+      <div class="step active">
+        <div class="step-circle">
+          <span class="step-number">3</span>
+        </div>
+        <span class="step-label">Payment</span>
       </div>
     </div>
     <h3>Selected Vehicle</h3>
-    <div class="vehicle-selection">
+    <div class="image-wrapper">
       <img :src="imageUrl" :alt="imageUrl" />
-      <div class="vehicle-info">
-        <label>{{ car.model }}</label>
-        <span>{{ car.location }}</span>
-        <span>Telephone: +(855) 999 777 888</span>
+      <div class="car-info-section">
+        <h1>{{ car.model }}</h1>
+        <div class="car-details">
+          <span class="car-location">{{
+            car.location || "Porsche Centre Phnom Penh City, Cambodia"
+          }}</span>
+          <span class="car-telephone">Telephone: +(855) 999 777 888</span>
+        </div>
       </div>
-      <hr />
-      <div class="payment-terms">
-        <label>Please accept Payments to proceed</label>
-        <div class="payment-consent">
-          <label>Payment Consent*</label>
-          <div class="payment-checkbox">
-            <div class="checkbox-wrapper-30">
-              <span class="checkbox">
-                <input v-model="termAgreed" type="checkbox" />
-                <svg>
-                  <use xlink:href="#checkbox-30" class="checkbox"></use>
-                </svg>
-              </span>
-              <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-                <symbol id="checkbox-30" viewBox="0 0 22 22">
-                  <path fill="none" stroke="currentColor"
-                    d="M5.5,11.3L9,14.8L20.2,3.3l0,0c-0.5-1-1.5-1.8-2.7-1.8h-13c-1.7,0-3,1.3-3,3v13c0,1.7,1.3,3,3,3h13 c1.7,0,3-1.3,3-3v-13c0-0.4-0.1-0.8-0.3-1.2" />
-                </symbol>
+    </div>
+    <div class="payment-terms">
+      <label>Please accept Payments to proceed</label>
+      <div class="payment-consent">
+        <label>Payment Consent*</label>
+        <div class="payment-checkbox">
+          <div class="checkbox-wrapper-30">
+            <span class="checkbox">
+              <input v-model="termAgreed" type="checkbox" />
+              <svg>
+                <use xlink:href="#checkbox-30" class="checkbox"></use>
               </svg>
-            </div>
-            <span>I agree to the Vehicle Reservation Terms & Conditions.</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+              <symbol id="checkbox-30" viewBox="0 0 22 22">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  d="M5.5,11.3L9,14.8L20.2,3.3l0,0c-0.5-1-1.5-1.8-2.7-1.8h-13c-1.7,0-3,1.3-3,3v13c0,1.7,1.3,3,3,3h13 c1.7,0,3-1.3,3-3v-13c0-0.4-0.1-0.8-0.3-1.2"
+                />
+              </symbol>
+            </svg>
           </div>
-        </div>
-        <div class="confirm-section">
-          <span>Reservation Deposit</span>
-          <button @click="handleSubmit()">Confirm</button>
+          <span>I agree to the Vehicle Reservation Terms & Conditions.</span>
         </div>
       </div>
-      <!-- <Teleport to="body"> -->
-      <div v-show="openModal" class="sucess-modal">
-        <SuccessModal />
+      <div class="confirm-section">
+        <span>Reservation Deposit</span>
+        <button @click="handleSubmit()">Confirm</button>
       </div>
-      <!-- </Teleport> -->
+    </div>
+    <div v-show="openModal">
+      <SuccessModal />
     </div>
   </div>
 </template>
@@ -64,13 +80,13 @@ import SuccessModal from "../SuccessModal.vue";
 export default {
   components: {
     CheckCompleted,
-    SuccessModal
+    SuccessModal,
   },
   data() {
     return {
       termAgreed: false,
       openModal: false,
-    }
+    };
   },
   async mounted() {
     await this.$router.isReady();
@@ -92,7 +108,7 @@ export default {
       } else {
         this.openModal = true;
       }
-    }
+    },
   },
   computed: {
     ...mapState(useCarStore, {
@@ -131,7 +147,7 @@ export default {
 .customer-completed label {
   color: black;
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 500;
 }
 
@@ -154,38 +170,70 @@ export default {
 
 .payment-completed label {
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 500;
   color: black;
 }
 
 img {
   height: auto;
-  width: 40%;
-  border-radius: 10px;
+  width: 45%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  min-width: 300px;
+  object-fit: cover;
 }
 
 h3 {
   font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
-.vehicle-info {
+.image-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 40px;
+  padding-bottom: 40px;
+  padding-top: 10px;
+  margin: 0 auto;
+  margin-top: 18.72px;
+}
+
+.car-info-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  font-family: Arial, Helvetica, sans-serif;
+  gap: 20px;
 }
 
-.vehicle-info label {
-  font-weight: 600;
-  font-size: 24px;
-  padding: 30px 0px 10px 0px;
+h1 {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.2;
 }
 
-.vehicle-info span {
-  color: #555;
-  font-size: 16px;
-  padding: 10px 0px 50px 0px;
+.car-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.car-location {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  color: #6b7280;
+  font-weight: 400;
+}
+
+.car-telephone {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 15px;
+  color: #6b7280;
+  font-weight: 400;
 }
 
 .payment-terms {
@@ -193,7 +241,7 @@ h3 {
 }
 
 .payment-terms label {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-weight: 600;
   font-size: 22px;
 }
@@ -218,7 +266,7 @@ h3 {
 }
 
 .payment-checkbox span {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
 }
 
 .confirm-section {
@@ -230,7 +278,7 @@ h3 {
 
 .confirm-section button {
   padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   background-color: white;
   border: 1px solid black;
   border-radius: 8px;
@@ -249,7 +297,7 @@ h3 {
   display: flex;
   justify-content: center;
   padding: 20px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Rajdhani", sans-serif;
   background-color: #2d5ea8;
   border: 1px solid #2d5ea8;
   color: white;
@@ -275,7 +323,7 @@ h3 {
   display: block;
 }
 
-.checkbox-wrapper-30 .checkbox>* {
+.checkbox-wrapper-30 .checkbox > * {
   position: absolute;
 }
 
@@ -308,7 +356,7 @@ h3 {
   transition-delay: calc(var(--dur) / 1.3);
 }
 
-.checkbox-wrapper-30 .checkbox input:checked+svg {
+.checkbox-wrapper-30 .checkbox input:checked + svg {
   --dashArray: 16 93;
   --dashOffset: 109;
 }
@@ -324,7 +372,9 @@ h3 {
   stroke-linejoin: round;
   stroke-width: 2px;
   top: 0;
-  transition: stroke-dasharray var(--dur), stroke-dashoffset var(--dur);
+  transition:
+    stroke-dasharray var(--dur),
+    stroke-dashoffset var(--dur);
 }
 
 .checkbox-wrapper-30 .checkbox svg,
@@ -334,10 +384,88 @@ h3 {
   width: 100%;
 }
 
-.sucess-modal {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-circle {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border: 2px solid #dc2626;
+}
+
+.step.completed .step-circle {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  border: 2px solid #6b7280;
+}
+
+.step .step-circle {
+  background-color: transparent;
+  border: 2px solid #ccc;
+}
+
+.step-number {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+}
+
+.step.active .step-number,
+.step.completed .step-number {
+  color: #fff;
+}
+
+.step .step-number {
+  color: #666;
+}
+
+.step-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.step.active .step-label {
+  color: #000;
+  font-weight: 600;
+}
+
+.step.completed .step-label {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.step-connector {
+  width: 100px;
+  height: 2px;
+  background-color: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.step-connector.completed {
+  background-color: #6b7280;
 }
 </style>
