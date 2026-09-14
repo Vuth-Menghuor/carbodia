@@ -220,17 +220,23 @@ a {
 
 /* Mobile devices (max-width: 480px) */
 @media (max-width: 480px) {
+  .inner-wrapper {
+    flex: 0 0 auto;
+  }
+
   .btn-log-in,
   .btn-user {
-    min-width: 75px;
+    min-width: 36px;
+    width: 36px;
     height: 34px;
-    padding: 0 12px;
+    padding: 0;
     border-radius: 6px;
+    background: rgba(0, 0, 0, 0.18);
+    border-width: 1px;
   }
 
   .log-in {
-    font-size: 12px;
-    padding-left: 0;
+    display: none;
   }
 
   .btn-log-in svg {
@@ -244,16 +250,16 @@ a {
   }
 
   .user-name {
-    font-size: 11px;
-    max-width: 60px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    display: none;
   }
 
   .image-user {
     height: 20px;
     width: 20px;
+  }
+
+  .btn-user svg {
+    display: none;
   }
 }
 
@@ -261,9 +267,10 @@ a {
 @media (max-width: 360px) {
   .btn-log-in,
   .btn-user {
-    min-width: 70px;
+    min-width: 36px;
+    width: 36px;
     height: 32px;
-    padding: 0 10px;
+    padding: 0;
   }
 
   .log-in {

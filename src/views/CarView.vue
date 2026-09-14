@@ -149,6 +149,7 @@ export default {
   gap: 40px;
   padding: 0 136px;
   background-color: #ffffff;
+  box-sizing: border-box;
 }
 
 .desc-container {
@@ -181,6 +182,7 @@ export default {
   gap: 24px;
   padding: 40px 136px;
   background-color: #f9fafb;
+  box-sizing: border-box;
 }
 
 @media (max-width: 1200px) {
@@ -220,6 +222,34 @@ export default {
 
   .suggested-car-container {
     grid-template-columns: 1fr;
+  }
+
+  .line {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .line h1 {
+    font-size: 28px;
+  }
+
+  .line-grey,
+  .engine-details,
+  .comment-section {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .line,
+  .listing-body-wrapper,
+  .suggested-car-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .listing-body-wrapper {
+    gap: 28px;
   }
 }
 </style>

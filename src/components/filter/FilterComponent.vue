@@ -1,7 +1,18 @@
 <template>
   <div class="filter-panel">
-    <!-- Price Section -->
-    <div class="filter-section">
+    <button
+      class="filter-toggle"
+      type="button"
+      :aria-expanded="isExpanded"
+      @click="isExpanded = !isExpanded"
+    >
+      <span>Filter cars</span>
+      <span class="filter-toggle-icon" :class="{ expanded: isExpanded }">⌄</span>
+    </button>
+
+    <div class="filter-content" :class="{ expanded: isExpanded }">
+      <!-- Price Section -->
+      <div class="filter-section">
       <h3 class="section-title">Price Range</h3>
       <div class="options-container">
         <div
@@ -22,10 +33,10 @@
           </label>
         </div>
       </div>
-    </div>
+      </div>
 
-    <!-- Brand Section -->
-    <div class="filter-section">
+      <!-- Brand Section -->
+      <div class="filter-section">
       <h3 class="section-title">Brand</h3>
       <div class="options-container">
         <div
@@ -46,10 +57,10 @@
           </label>
         </div>
       </div>
-    </div>
+      </div>
 
-    <!-- Discount Section -->
-    <div class="filter-section">
+      <!-- Discount Section -->
+      <div class="filter-section">
       <h3 class="section-title">Discount</h3>
       <div class="options-container">
         <div
@@ -70,12 +81,13 @@
           </label>
         </div>
       </div>
-    </div>
+      </div>
 
-    <!-- Clear Filters Button -->
-    <button @click="clearAllFilters" class="clear-button">
-      Clear All Filters
-    </button>
+      <!-- Clear Filters Button -->
+      <button @click="clearAllFilters" class="clear-button">
+        Clear All Filters
+      </button>
+    </div>
   </div>
 </template>
 
@@ -88,6 +100,7 @@ const route = useRoute();
 const selectedPrice = ref(false);
 const selectedBrand = ref(false);
 const selectedDiscount = ref(false);
+const isExpanded = ref(false);
 
 // Define filter options
 const priceOptions = [
@@ -161,6 +174,10 @@ function clearAllFilters() {
   top: 16px;
   font-family: "Rajdhani", sans-serif;
   margin-bottom: 30px;
+}
+
+.filter-toggle {
+  display: none;
 }
 
 .filter-section {
@@ -248,6 +265,9 @@ function clearAllFilters() {
     margin: 0;
     border-radius: 8px;
     padding: 20px;
+    box-sizing: border-box;
+    right: 0;
+    top: 0;
   }
 
   .section-title {
@@ -256,6 +276,41 @@ function clearAllFilters() {
 
   .option-label {
     font-size: 15px;
+  }
+
+  .filter-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background: #ffffff;
+    color: #111827;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .filter-toggle-icon {
+    font-size: 24px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .filter-toggle-icon.expanded {
+    transform: rotate(180deg);
+  }
+
+  .filter-content {
+    display: none;
+    padding-top: 20px;
+  }
+
+  .filter-content.expanded {
+    display: block;
   }
 }
 </style>

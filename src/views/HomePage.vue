@@ -29,7 +29,7 @@
   <BrandLanding v-else class="brand-landing" />
   <BrandList />
   <h1>Popular Cars</h1>
-  <div class="popular-list">
+  <div ref="popularList" class="popular-list">
     <template v-for="(car, index) in popularCars" :key="index">
       <PopularCard
         :name="car.name"
@@ -37,6 +37,7 @@
         :price="car.price"
         :img="car.img"
         :imgHeight="car.height"
+        :isVisible="popularAnimationTriggered"
       />
     </template>
   </div>
@@ -117,6 +118,7 @@ export default {
       ],
       isSidebarVisible: false,
       scrolled: false,
+      popularAnimationTriggered: false,
 
       // Filter objects
       filterPrice: 0,
@@ -144,6 +146,15 @@ export default {
       const hero = this.$refs.hero?.$el;
       if (hero) {
         this.scrolled = window.scrollY > hero.offsetHeight;
+      }
+
+      const popularList = this.$refs.popularList;
+      if (popularList && !this.popularAnimationTriggered) {
+        const triggerY = window.innerHeight *
+          (window.matchMedia("(max-width: 600px)").matches ? 0.3 : 0.5);
+        if (popularList.getBoundingClientRect().top <= triggerY) {
+          this.popularAnimationTriggered = true;
+        }
       }
     },
   },
@@ -187,8 +198,8 @@ export default {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  height: 100dvh;
+  background: rgba(0, 0, 0, 0.46);
   z-index: 999;
 }
 
@@ -243,7 +254,7 @@ h1 {
 
 .popular-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-content: center;
   padding: 20px 160px 20px 160px;
   gap: 40px;
@@ -259,5 +270,59 @@ h1 {
 .filter-wrapper {
   position: sticky;
   top: 100px;
+}
+
+
+@media (max-width: 768px) {
+  h1 {
+    padding-inline: 32px;
+    font-size: 36px;
+  }
+
+  .popular-list {
+    padding-inline: 32px;
+    gap: 24px;
+  }
+
+  .car-listing-container {
+    flex-direction: column;
+  }
+
+  .car-listing {
+    width: 100%;
+    box-sizing: border-box;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 20px 32px;
+  }
+
+  .filter-wrapper {
+    order: -1;
+    position: static;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    padding: 24px 16px 12px;
+    font-size: 32px;
+  }
+
+  .popular-list {
+    grid-template-columns: 1fr;
+    padding: 12px 16px 24px;
+    gap: 20px;
+  }
+
+  .car-listing {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
+
+  .filter-wrapper {
+    padding: 0 16px;
+  }
 }
 </style>

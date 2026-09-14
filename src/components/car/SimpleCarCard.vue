@@ -209,6 +209,11 @@ export default {
     gap: 12px;
   }
 
+  .image-container {
+    width: 100%;
+    order: -1;
+  }
+
   .details-btn,
   .delete-btn {
     flex: 1;
@@ -216,8 +221,15 @@ export default {
   }
 
   .bm-img {
-    width: 360px;
-    height: 225px;
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .reserve-btn {
+    width: 100%;
+    margin: 4px 0;
   }
 }
 </style>

@@ -129,6 +129,7 @@ export default {
 .container {
   padding: 10px 136px 100px 136px;
   position: relative;
+  box-sizing: border-box;
 }
 
 .row-scroll-wrapper {
@@ -467,5 +468,97 @@ h1 {
 
 .step-connector.completed {
   background-color: #6b7280;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 20px 72px;
+  }
+
+  .checkout-steps {
+    gap: 10px;
+  }
+
+  .step-connector {
+    width: min(12vw, 64px);
+  }
+
+  .step-label {
+    font-size: 12px;
+    white-space: normal;
+    max-width: 86px;
+  }
+
+  .image-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 24px;
+  }
+
+  img {
+    width: 100%;
+    max-width: 480px;
+    min-width: 0;
+  }
+
+  .car-info-section {
+    align-items: center;
+    text-align: center;
+  }
+
+  .payment-consent {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .checkout-steps {
+    gap: 6px;
+  }
+
+  .step-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .step-connector {
+    width: 22px;
+  }
+
+  .step-label {
+    font-size: 11px;
+    max-width: 68px;
+  }
+
+  .payment-terms {
+    padding-top: 24px;
+  }
+
+  .payment-terms label {
+    font-size: 20px;
+  }
+
+  .payment-consent {
+    margin-top: 18px;
+    padding: 16px;
+  }
+
+  .payment-checkbox {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
 }
 </style>

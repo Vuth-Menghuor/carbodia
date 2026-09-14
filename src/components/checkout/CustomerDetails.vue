@@ -231,6 +231,7 @@ export default {
 <style scoped>
 .container {
   padding: 10px 136px 100px 136px;
+  box-sizing: border-box;
 }
 
 .checkout-steps {
@@ -465,6 +466,8 @@ h1 {
   background-position: right 15px center;
   background-size: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .select-fill-content select:focus {
@@ -518,6 +521,73 @@ h1 {
 
 .fill-telephone > .phone-number {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 20px 88px;
+  }
+
+  .checkout-steps {
+    gap: 10px;
+  }
+
+  .step-connector {
+    width: min(12vw, 64px);
+  }
+
+  .step-label {
+    font-size: 12px;
+    white-space: normal;
+    max-width: 86px;
+  }
+
+  .row-select-fill {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .checkout-steps {
+    gap: 6px;
+  }
+
+  .step-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .step-connector {
+    width: 22px;
+  }
+
+  .step-label {
+    font-size: 11px;
+    max-width: 68px;
+  }
+
+  .fill-telephone {
+    flex-direction: column;
+  }
+
+  .phone-icon-wrapper input {
+    width: 100%;
+    min-height: 52px;
+    box-sizing: border-box;
+  }
 }
 
 .checkout-steps {
@@ -797,6 +867,43 @@ h1 {
 
   .car-location {
     font-size: 14px;
+  }
+}
+
+/* Keep these final because the checkout step styles above are declared twice. */
+@media (max-width: 768px) {
+  .checkout-steps {
+    gap: 10px;
+  }
+
+  .step-connector {
+    width: min(12vw, 64px);
+  }
+
+  .step-label {
+    font-size: 12px;
+    white-space: normal;
+    max-width: 86px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-steps {
+    gap: 6px;
+  }
+
+  .step-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .step-connector {
+    width: 22px;
+  }
+
+  .step-label {
+    font-size: 11px;
+    max-width: 68px;
   }
 }
 </style>

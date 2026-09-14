@@ -26,13 +26,13 @@
 
         <div
           class="nav-item active"
-          @click="$router.push({ name: 'dashboard' })"
+          @click="navigate('home')"
         >
           <Icon icon="material-symbols:dashboard-rounded" />
           <span>Dashboard</span>
         </div>
 
-        <div class="nav-item" @click="$router.push({ name: 'bookmarks' })">
+        <div class="nav-item" @click="navigate('bookmarks')">
           <Icon icon="material-symbols:bookmark-outline" />
           <span>Bookmarks</span>
         </div>
@@ -73,6 +73,10 @@ export default {
     closeSidebar() {
       this.$emit("close-sidebar");
     },
+    navigate(name) {
+      this.$router.push({ name });
+      this.closeSidebar();
+    },
   },
 };
 </script>
@@ -86,7 +90,7 @@ export default {
   left: 0;
   z-index: 1000;
   width: 300px;
-  height: 100vh;
+  height: 100dvh;
   background: #ffffff;
   display: flex;
   flex-direction: column;
@@ -163,6 +167,8 @@ export default {
   justify-content: center;
   color: #6c757d;
   outline: none;
+  width: 44px;
+  height: 44px;
 }
 
 .close-button:focus {
@@ -273,12 +279,31 @@ export default {
 /* Responsive Design */
 @media (max-width: 768px) {
   .sidebar-container {
-    width: 100%;
-    max-width: 320px;
+    width: min(72vw, 300px);
   }
 
   .nav-item {
     margin: 0 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-header {
+    padding: 12px 16px;
+  }
+
+  .navigation {
+    padding: 20px 0 calc(24px + env(safe-area-inset-bottom));
+  }
+
+  .nav-group-label {
+    padding: 0 20px;
+  }
+
+  .nav-item {
+    min-height: 46px;
+    margin: 0 10px 4px;
+    padding: 10px 16px;
   }
 }
 

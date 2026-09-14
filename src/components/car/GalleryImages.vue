@@ -71,6 +71,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background-color: #ffffff;
+  box-sizing: border-box;
 }
 
 /* Grid Container Styling */
@@ -85,6 +86,7 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px; /* Subtle shadow */
   padding: 20px; /* Internal spacing */
   margin-top: 50px;
+  box-sizing: border-box;
 }
 
 /* Header Section */
@@ -172,4 +174,47 @@ export default {
   transform: scale(1.05);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 12px;
 } */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  .grid-container {
+    margin-top: 24px;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .grid-header,
+  .grid-main,
+  .grid-footer {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .grid-container {
+    margin-top: 16px;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .grid-header,
+  .grid-main,
+  .grid-footer {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .grid-header img,
+  .grid-main img,
+  .grid-footer img {
+    width: 100%;
+  }
+}
 </style>

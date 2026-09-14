@@ -7,16 +7,9 @@
           <input class="star" type="checkbox" title="bookmark page" checked />
         </div>
         <div class="sport">Sport</div>
-        <Transition
-          appear
-          :css="false"
-          @before-enter="onBeforeEnter"
-          @enter="onEnter"
-        >
-          <div class="popular-car">
-            <img :src="img" loading="lazy" alt="car1" />
-          </div>
-        </Transition>
+        <div ref="carImage" class="popular-car">
+          <img :src="img" loading="lazy" alt="car1" />
+        </div>
         <div class="bg-popular"></div>
         <div class="details">
           <span>
@@ -46,18 +39,15 @@ import speedo from "@/components/icons/popIcons/speedo.vue";
 import gas from "@/components/icons/popIcons/gas.vue";
 import GroupPeople from "@/components/icons/popIcons/groupPeople.vue";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default {
-  setup() {
-    gsap.registerPlugin(ScrollTrigger);
-  },
   props: {
     name: "",
     img: "",
     price: 0,
     themeColor: "red",
     imgHeight: "160px",
+    isVisible: Boolean,
   },
   data() {
     return {
@@ -71,8 +61,22 @@ export default {
     speedo,
   },
   methods: {
-    onEnter,
-    onBeforeEnter,
+    revealCar() {
+      gsap.to(this.$refs.carImage, {
+        duration: 1.1,
+        xPercent: -50,
+        ease: "power2.out",
+      });
+    },
+  },
+  mounted() {
+    gsap.set(this.$refs.carImage, { xPercent: 50 });
+    if (this.isVisible) this.revealCar(); 
+  },
+  watch: {
+    isVisible(visible) {
+      if (visible) this.revealCar();
+    },
   },
   computed: {
     linearGradient() {
@@ -80,26 +84,6 @@ export default {
     },
   },
 };
-
-function onBeforeEnter(el) {
-  gsap.set(el, {
-    xPercent: 50,
-  });
-}
-
-function onEnter(el, done) {
-  gsap.to(el, {
-    scrollTrigger: {
-      trigger: ".popular-car",
-      start: "50% 80%",
-      // markers: true
-    },
-    duration: 1.5,
-    xPercent: -50,
-    ease: "power2.out",
-    onComplete: done,
-  });
-}
 </script>
 
 <style scoped>
@@ -112,15 +96,23 @@ function onEnter(el, done) {
   font-optical-sizing: auto;
   font-weight: bold;
 }
+.container {
+  width: 100%;
+  min-width: 0;
+}
 .layout-sec {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  min-width: 0;
 }
 .column {
   overflow: hidden;
   border: 2px solid #bababa;
   height: 380px;
-  width: auto;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   border-radius: 10px;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -209,8 +201,8 @@ function onEnter(el, done) {
   z-index: -100;
 }
 .details {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   padding: 10px 30px 0px 30px;
 }
@@ -218,24 +210,37 @@ function onEnter(el, done) {
 .details span {
   display: flex;
   align-items: center;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.details > span:nth-child(2) {
+  justify-content: center;
+}
+
+.details > span:last-child {
+  justify-content: flex-end;
 }
 
 .space-txt {
   padding: 0px 0px 0px 6px;
   font-family: "Rajdhani", sans-serif;
   font-weight: 400;
-  font-size: 20px;
+  font-size: clamp(14px, 1.5vw, 20px);
   font-style: normal;
 }
 .price-inquire {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
   padding: 20px 30px 0px 30px;
 }
 .btn-price {
   border: none;
-  border-radius: 0px 10px 0px 0px;
-  width: 130px;
+  border-radius: 8px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   font-family: "Rajdhani", sans-serif;
   background: rgb(255, 255, 255);
   font-size: 20px;
@@ -248,12 +253,14 @@ function onEnter(el, done) {
 
 .btn-buy {
   padding: 10px 20px 10px 20px;
-  width: 130px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   border: none;
   color: white;
   background-color: v-bind("themeColor");
   font-family: "Raleway", sans-serif;
-  border-radius: 0px 10px 0px 10px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -292,10 +299,60 @@ function onEnter(el, done) {
 
 @media (max-width: 576px) {
   .popular-car img {
-    transform: scale(0.7);
+    transform: scale(0.65);
   }
+
   .column {
-    height: 320px;
+    height: 370px;
+  }
+
+  .column .header-col {
+    padding: 20px 16px 0;
+    font-size: 16px;
+  }
+
+  .header-col > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .star {
+    right: 20px;
+    bottom: 16px;
+  }
+
+  .sport {
+    padding: 10px 16px 0;
+    font-size: 15px;
+  }
+
+  .popular-car {
+    bottom: 138px;
+  }
+
+  .details {
+    padding: 8px 16px 0;
+  }
+
+  .space-txt {
+    padding-left: 4px;
+    font-size: 14px;
+  }
+
+  .details svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .price-inquire {
+    gap: 10px;
+    padding: 16px 16px 0;
+  }
+
+  .btn-price,
+  .btn-buy {
+    padding: 10px 8px;
+    font-size: 15px;
   }
 }
 </style>

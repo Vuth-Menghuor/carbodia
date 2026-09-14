@@ -81,6 +81,8 @@ export default {
     sans-serif;
   background-color: #fafafa;
   padding-top: 150px;
+  min-height: 100dvh;
+  box-sizing: border-box;
 }
 
 .bookmark-container {
@@ -158,7 +160,7 @@ export default {
 
 .bookmarks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
 }
@@ -175,7 +177,7 @@ export default {
 /* Responsive Design */
 @media (max-width: 768px) {
   .bookmark-page {
-    padding-top: 100px;
+    padding-top: 128px;
   }
 
   .bookmark-container {
@@ -193,6 +195,7 @@ export default {
 
   .bookmark-header {
     margin-bottom: 24px;
+    padding-bottom: 20px;
   }
 
   .empty-state {
@@ -201,6 +204,10 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .bookmark-container {
+    padding: 0 12px;
+  }
+
   .bookmark-title {
     font-size: 1.75rem;
   }
@@ -209,6 +216,16 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+  }
+
+  .empty-state {
+    padding: 44px 16px;
+    border-radius: 12px;
+  }
+
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
   }
 }
 

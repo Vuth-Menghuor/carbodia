@@ -136,7 +136,8 @@ h2 {
   padding: 24px;
   font-size: 16px;
   font-weight: 400;
-  width: 94%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .info-item {
@@ -171,5 +172,26 @@ h2 {
 .info-item span svg {
   width: 24px;
   height: 24px;
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .box {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .info-item {
+    padding: 12px;
+  }
+
+  .info-item span {
+    font-size: 14px;
+  }
 }
 </style>

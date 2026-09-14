@@ -8,10 +8,12 @@
             class="RouterLink"
             v-for="(brand, index) in brands"
             :key="index"
-            :to="`/brand/${brand.name}`"
-          >
-            <div class="product-item">
-              <img :src="brand.logo" :alt="brand.name" loading="lazy" />
+          :to="`/brand/${brand.name}`"
+        >
+          <div class="product-item">
+              <div class="brand-logo-slot">
+                <img :src="brand.logo" :alt="brand.name" loading="lazy" />
+              </div>
               <p class="branch-name">{{ brand.name }}</p>
             </div>
           </RouterLink>
@@ -90,11 +92,17 @@ export default {
 }
 
 .product-container {
-  display: flex;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 20px;
   padding: 20px;
-  justify-content: center;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.RouterLink {
+  min-width: 0;
+  text-decoration: none;
 }
 
 .product-item {
@@ -112,8 +120,9 @@ export default {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  flex: 1;
-  min-width: 220px;
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
 }
 
 .product-item::before {
@@ -146,7 +155,14 @@ export default {
   object-fit: contain;
   filter: grayscale(20%);
   transition: all 0.3s ease;
-  margin-bottom: 6px;
+  margin: 0;
+}
+
+.brand-logo-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
 }
 
 .product-item:hover img {
@@ -155,26 +171,24 @@ export default {
 }
 
 .branch-name {
-  margin-top: 12px;
+  margin: 12px 0 0;
   font-size: 16px;
   font-family: "Rajdhani", sans-serif;
   font-weight: 500;
   color: #495057;
   text-transform: capitalize;
   letter-spacing: 0.5px;
+  overflow-wrap: anywhere;
 }
 
 /* Tablet responsive */
 @media (max-width: 1024px) {
   .product-container {
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .product-item {
-    flex: 1 1 calc(33.333% - 20px);
-    min-width: 200px;
-    max-width: calc(33.333% - 20px);
+    padding: 20px 24px;
   }
 }
 
@@ -186,15 +200,11 @@ export default {
   }
 
   .product-container {
-    flex-wrap: wrap;
-    justify-content: center;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
   }
 
   .product-item {
-    flex: 1 1 calc(50% - 10px);
-    min-width: 160px;
-    max-width: calc(50% - 10px);
     padding: 20px 30px;
     min-height: 80px;
   }
@@ -207,6 +217,16 @@ export default {
   .carousel-arrow {
     width: 40px;
     height: 40px;
+  }
+
+  .brand-logo-slot {
+    height: 54px;
+  }
+
+  .RouterLink:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 20px) / 2);
   }
 }
 
@@ -222,10 +242,7 @@ export default {
   }
 
   .product-item {
-    flex: 1 1 calc(50% - 7px);
-    min-width: 140px;
-    max-width: calc(50% - 7px);
-    padding: 15px 25px;
+    padding: 15px 12px;
     min-height: 70px;
     border-radius: 8px;
   }

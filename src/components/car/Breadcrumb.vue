@@ -42,6 +42,7 @@ export default {
   display: flex;
   gap: 20px;
   padding: 136px 136px 0 136px;
+  box-sizing: border-box;
 }
 
 .nav-link li {
@@ -56,5 +57,31 @@ a {
   text-decoration: none;
   color: #717171;
   font-size: 18px;
+}
+
+@media (max-width: 1200px) {
+  .nav-link {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-link {
+    gap: 10px;
+    padding: 100px 20px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  a {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link {
+    padding: 88px 16px 0;
+  }
 }
 </style>

@@ -161,7 +161,7 @@ export default {
 
 .bg {
   position: relative;
-  height: 100vh;
+  height: 100svh;
   width: 100vw;
   background-size: 100% auto;
   padding: 0;
@@ -198,14 +198,14 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  width: 600px;
-  left: 120px;
-  bottom: 80px;
+  width: min(46vw, 600px);
+  left: clamp(32px, 8vw, 120px);
+  bottom: clamp(48px, 8vh, 80px);
 }
 
 .title {
   color: white;
-  font-size: 48px;
+  font-size: clamp(34px, 3.5vw, 48px);
   margin: 0;
   line-height: 1.1;
 }
@@ -215,15 +215,16 @@ export default {
   font-style: italic;
   font-family: "Rajdhani", sans-serif;
   font-weight: 300;
-  font-size: 14px;
+  font-size: clamp(13px, 1vw, 14px);
+  line-height: 1.45;
 }
 
 .indicator-container {
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 92px;
-  right: 120px;
+  bottom: clamp(56px, 9vh, 92px);
+  right: clamp(32px, 8vw, 120px);
 }
 
 .indicator-container > div {
@@ -468,9 +469,10 @@ export default {
   }
 
   .title-wrapper {
-    width: calc(100% - 40px);
-    left: 30px;
-    bottom: 160px;
+    width: auto;
+    left: 16px;
+    right: 16px;
+    bottom: 150px;
     z-index: 2;
   }
 
@@ -483,7 +485,7 @@ export default {
   .subtitle {
     font-size: 12px;
     line-height: 1.5;
-    max-width: 90%;
+    max-width: none;
   }
 
   .indicator-container {
@@ -553,9 +555,9 @@ export default {
   }
 
   .title-wrapper {
-    width: calc(100% - 40px);
-    left: 20px;
-    bottom: 150px;
+    left: 12px;
+    right: 12px;
+    bottom: 140px;
   }
 
   .title {

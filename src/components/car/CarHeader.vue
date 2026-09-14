@@ -114,10 +114,7 @@ export default {
 
 .car-header {
   padding: 10px 136px 0 136px;
-}
-
-.car-header {
-  padding: 10px 136px 0 136px;
+  box-sizing: border-box;
 }
 
 /* Image Section - Flexbox Layout */
@@ -142,7 +139,7 @@ export default {
 
 .main-image {
   width: 100%;
-  height: 100%;
+  height: 500px;
   object-fit: cover;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -219,15 +216,15 @@ export default {
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .image-section {
-    padding: 10px 60px 0 60px;
+  .car-header {
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
 @media (max-width: 992px) {
   .image-section {
     flex-direction: column;
-    padding: 10px 40px 0 40px;
   }
 
   .thumbnail-gallery {
@@ -246,7 +243,7 @@ export default {
   }
 
   .image-section {
-    padding: 10px 0;
+    padding: 0;
   }
 
   .main-image {
@@ -367,6 +364,36 @@ export default {
 
   .inquire-button {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .car-header {
+    padding: 8px 16px 0;
+  }
+
+  .main-image {
+    height: 260px;
+  }
+
+  .thumbnail-gallery {
+    gap: 8px;
+  }
+
+  .thumbnail-image {
+    height: 110px;
+  }
+
+  .price-sec {
+    padding: 24px 0 8px;
+  }
+
+  .price-inquire {
+    gap: 16px;
+  }
+
+  .inquire-button {
+    height: 50px;
   }
 }
 </style>

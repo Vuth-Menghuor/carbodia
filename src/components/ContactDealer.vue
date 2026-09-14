@@ -60,6 +60,7 @@ h2 {
   width: 100%;
   max-width: 407px;
   padding: 24px;
+  box-sizing: border-box;
 }
 
 .header {
@@ -147,6 +148,7 @@ button > span {
   color: #111827;
   margin-bottom: 12px;
   height: 100px;
+  box-sizing: border-box;
   resize: none;
 }
 
@@ -166,5 +168,24 @@ input:focus {
   width: 100%;
   border-radius: 6px;
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .wrapper {
+    padding: 16px;
+  }
+
+  .header {
+    gap: 12px;
+  }
+
+  .dealer-name > p {
+    line-height: 1.35;
+  }
 }
 </style>

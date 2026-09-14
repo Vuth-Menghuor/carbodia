@@ -112,7 +112,7 @@ export default {
 
 .wrapper {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   z-index: 168;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(15px);
@@ -362,47 +362,58 @@ export default {
   }
 
   .container {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 8px;
     height: 60px;
-    justify-content: space-between;
-    padding: 0 1rem;
-    flex-wrap: nowrap;
+    padding: 0 0.75rem;
     background: inherit;
   }
 
   .menu-btn {
+    grid-column: 1;
     flex-shrink: 0;
-    order: 1;
+    min-width: 0;
   }
 
   .menu-btn>p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .burger-svg {
-    left: -32px;
+    position: static;
     width: 1.4rem;
     height: 1.4rem;
   }
 
   .search-wrapper {
-    flex: 1;
+    grid-column: 2;
+    width: 100%;
     max-width: none;
-    margin: 0 1rem;
-    order: 2;
+    min-width: 0;
+    margin: 0;
     overflow: visible;
   }
 
   .search {
+    width: 100%;
+    min-width: 0;
     overflow: visible;
   }
 
   .search>input {
     width: 100%;
+    min-width: 0;
     font-size: 13px;
     padding: 0.6rem 0.6rem 0.6rem 2.2rem;
     height: 36px;
     background-color: white;
     border-radius: 18px;
+  }
+
+  .container > :last-child {
+    grid-column: 3;
+    min-width: 36px;
   }
 
   .search-icon {
@@ -463,17 +474,17 @@ export default {
   }
 
   .menu-btn>p {
-    font-size: 1.1rem;
+    display: none;
   }
 
   .burger-svg {
-    left: -28px;
+    position: static;
     width: 1.3rem;
     height: 1.3rem;
   }
 
   .search-wrapper {
-    margin: 0 0.75rem;
+    margin: 0;
   }
 
   .search>input {

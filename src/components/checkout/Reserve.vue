@@ -205,6 +205,7 @@ export default {
 
 .wrapper-content {
   padding: 10px 136px 0 136px;
+  box-sizing: border-box;
 }
 
 .image-wrapper {
@@ -240,7 +241,7 @@ h1 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 100px;
+  margin-bottom: 116px;
 }
 
 .span-content {
@@ -362,6 +363,11 @@ h1 {
   padding-bottom: 20px;
 }
 
+/* The standalone Interest Rate field needs separation from the payment choices. */
+.container-fill-content > .select-fill-content {
+  margin-bottom: 12px;
+}
+
 .select-fill-content select {
   font-size: 16px;
   outline: none;
@@ -376,6 +382,8 @@ h1 {
   background-position: right 15px center;
   background-size: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .select-fill-content select:focus {
@@ -406,6 +414,8 @@ h1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   color: gray;
   transition-duration: 0.3s;
+  width: 100%;
+  min-height: 64px;
 }
 
 .select-fill-reserve.focus button {
@@ -449,6 +459,8 @@ h1 {
     rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   padding: 10px 0px 10px 0px;
   width: 100%;
+  z-index: 90;
+  box-sizing: border-box;
 }
 
 .btn-next button {
@@ -464,6 +476,16 @@ h1 {
   background-color: black;
   transition: 0.3s ease;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  min-width: 160px;
+  min-height: 48px;
+  border-radius: 6px;
+}
+
+.btn-next button:disabled {
+  background-color: #9ca3af;
+  color: #ffffff;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .original-price {
@@ -473,6 +495,11 @@ h1 {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .wrapper-content {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
   .image-wrapper {
     gap: 30px;
     padding-bottom: 30px;
@@ -493,6 +520,25 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  .wrapper-content {
+    padding: 10px 20px 0;
+  }
+
+  .checkout-steps {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .step-connector {
+    width: min(12vw, 64px);
+  }
+
+  .step-label {
+    font-size: 12px;
+    white-space: normal;
+    max-width: 86px;
+  }
+
   .image-wrapper {
     flex-direction: column;
     gap: 24px;
@@ -534,9 +580,61 @@ h1 {
   .original-price {
     font-size: 16px;
   }
+
+  .container-fill-content {
+    margin-bottom: 96px;
+  }
+
+  .row-select-fill {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-bottom: 16px;
+  }
+
+  .select-fill-content {
+    padding-bottom: 0;
+  }
+
+  .container-fill-content > .select-fill-content {
+    margin-bottom: 16px;
+  }
+
+  .btn-next {
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+
+  .btn-next button {
+    width: 100%;
+    margin-right: 0;
+    min-height: 52px;
+  }
 }
 
 @media (max-width: 480px) {
+  .wrapper-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .checkout-steps {
+    gap: 6px;
+  }
+
+  .step-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .step-connector {
+    width: 22px;
+  }
+
+  .step-label {
+    font-size: 11px;
+    max-width: 68px;
+  }
+
   .image-wrapper {
     padding: 0 15px 20px 15px;
   }
@@ -558,6 +656,13 @@ h1 {
 
   .car-location {
     font-size: 14px;
+  }
+
+  .select-fill-content select,
+  .select-fill-reserve button,
+  .btn-payment button {
+    padding: 16px;
+    font-size: 16px;
   }
 }
 
@@ -628,5 +733,44 @@ h1 {
   height: 2px;
   background-color: #e0e0e0;
   flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .checkout-steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr) 24px minmax(0, 1fr);
+    gap: 4px;
+    width: 100%;
+  }
+
+  .step {
+    min-width: 0;
+  }
+
+  .step-connector {
+    width: auto;
+  }
+
+  .step-label {
+    white-space: normal;
+    font-size: 12px;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-steps {
+    grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 18px minmax(0, 1fr);
+    gap: 2px;
+  }
+
+  .step-circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .step-label {
+    font-size: 11px;
+  }
 }
 </style>

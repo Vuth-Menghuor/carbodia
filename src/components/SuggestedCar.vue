@@ -140,4 +140,18 @@ span {
   font-size: 14px;
   color: #6b7280;
 }
+
+@media (max-width: 480px) {
+  .related-rides {
+    margin: 0;
+  }
+
+  .img-container {
+    height: 220px;
+  }
+
+  .product-card {
+    padding: 16px;
+  }
+}
 </style>

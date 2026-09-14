@@ -95,14 +95,15 @@ export default {
   border: 1px solid #c0c0c0;
   background-color: white;
   width: 100%;
+  box-sizing: border-box;
   position: sticky;
   top: 0;
   z-index: 100000;
   /* padding-top: 116px; */
 }
 .brand-name {
-  font-size: 32px;
-  letter-spacing: 4px;
+  font-size: clamp(22px, 2vw, 32px);
+  letter-spacing: clamp(2px, 0.3vw, 4px);
   font-family: "911Porscha", sans-serif;
 }
 .return-home-page {
@@ -141,7 +142,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 48vh;
+  height: clamp(360px, 48vh, 600px);
   max-height: 600px;
   width: 100%;
   background: linear-gradient(
@@ -155,7 +156,10 @@ export default {
   position: absolute;
   z-index: 2;
   top: 20%;
-  font-size: 16rem;
+  font-size: clamp(5.5rem, 16vw, 16rem);
+  line-height: 0.85;
+  max-width: 100%;
+  overflow: hidden;
   font-family: "911Porscha", sans-serif;
   font-weight: bold;
   /* color: #c0c0c0; */
@@ -167,7 +171,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 52%;
+  width: min(70%, 1200px);
   max-width: 1200px;
   top: 85%;
   z-index: 100;
@@ -182,7 +186,7 @@ export default {
   max-height: none;
 }
 .details-subtitle {
-  margin-top: 8%;
+  margin-top: clamp(100px, 8vw, 180px);
 }
 .details-subtitle {
   display: flex;
@@ -197,7 +201,7 @@ export default {
   gap: 30px;
 }
 .details-subtitle h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-family: "911Porscha", sans-serif;
   font-weight: bolder;
 }
@@ -219,5 +223,132 @@ export default {
 }
 hr {
   border-top: 1px solid #ccc;
+}
+
+@media (max-width: 1024px) {
+  .listing-items {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  .image-landing-page {
+    width: min(76%, 900px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container-wrapper {
+    min-height: 68px;
+    padding: 20px 88px;
+  }
+
+  .return-home-page {
+    top: 14px;
+    left: 16px;
+  }
+
+  .return-home-page button {
+    min-height: 40px;
+    padding: 8px 12px 8px 8px;
+  }
+
+  .hero-background {
+    height: clamp(300px, 54vw, 430px);
+  }
+
+  .hero-background span {
+    top: 18%;
+    font-size: clamp(5rem, 22vw, 10.5rem);
+  }
+
+  .image-landing-page {
+    width: 82%;
+    top: 82%;
+  }
+
+  .image-landing-page > img {
+    transform: scale(1.15);
+  }
+
+  .details-subtitle {
+    margin-top: clamp(78px, 14vw, 116px);
+    padding: 0 20px;
+  }
+
+  .details-subtitle span {
+    flex-wrap: wrap;
+    gap: 10px 22px;
+  }
+
+  .span-link-subtitle a {
+    font-size: 16px;
+  }
+
+  .details-subtitle h1 {
+    margin: 24px 0;
+    text-align: center;
+  }
+
+  .listing-items {
+    padding: 20px 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-wrapper {
+    min-height: 60px;
+    padding: 17px 72px;
+  }
+
+  .brand-name {
+    font-size: 20px;
+  }
+
+  .return-home-page {
+    top: 10px;
+    left: 10px;
+  }
+
+  .return-home-page button {
+    min-height: 38px;
+    padding: 7px 10px 7px 6px;
+    font-size: 13px;
+  }
+
+  .hero-background {
+    height: 270px;
+  }
+
+  .hero-background span {
+    top: 20%;
+    font-size: clamp(4.2rem, 23vw, 6rem);
+  }
+
+  .image-landing-page {
+    width: 92%;
+    top: 82%;
+  }
+
+  .image-landing-page > img {
+    transform: scale(1.08);
+  }
+
+  .details-subtitle {
+    margin-top: 72px;
+    padding: 0 16px;
+  }
+
+  .details-subtitle h1 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+  }
+
+  .span-link-subtitle a {
+    font-size: 14px;
+  }
+
+  .listing-items {
+    padding: 16px 16px 0;
+  }
 }
 </style>

@@ -30,6 +30,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 18px 16px;
   width: 100%;
+  box-sizing: border-box;
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
@@ -54,5 +55,20 @@ export default {
 
 .back-button :deep(svg path) {
   fill: #333;
+}
+
+@media (max-width: 480px) {
+  .back-button {
+    padding: 12px 14px;
+  }
+
+  .back-button button {
+    font-size: 18px;
+  }
+
+  .back-button :deep(svg) {
+    width: 26px;
+    height: 26px;
+  }
 }
 </style>

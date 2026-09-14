@@ -300,8 +300,7 @@ export default {
   },
   methods: {
     changeForm() {
-      this.isCreateForm = !this.isCreateForm;
-      this.isLoggedIn = !this.isLoggedIn;
+      this.$router.push(this.isCreateForm ? "/login" : "/signup");
     },
     async signIn() {
       try {
@@ -354,8 +353,12 @@ a {
   background: url("@/assets/images/bg-authentication.jpg");
   background-size: cover;
   background-position: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 104px 24px 32px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -369,8 +372,8 @@ a {
 
 .form-sec {
   height: auto;
-  width: 500px;
-  max-width: 90%;
+  width: min(100%, 500px);
+  box-sizing: border-box;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -674,7 +677,8 @@ h2 {
 
 .fill-fname-lname {
   width: 100%;
-  width: -webkit-fill-available;
+  box-sizing: border-box;
+  min-width: 0;
   height: 45px;
   border: none;
   border-bottom: 2px solid rgba(255, 255, 255, 0.4);
@@ -714,10 +718,12 @@ h2 {
 
 .fname {
   flex: 1;
+  min-width: 0;
 }
 
 .lname {
   flex: 1;
+  min-width: 0;
 }
 
 .check-box strong {
@@ -744,6 +750,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   height: auto;
+  box-sizing: border-box;
   padding: 20px 40px;
   background-color: transparent;
   text-align: center;
@@ -871,5 +878,89 @@ h2 {
   font-size: 12px;
   margin-top: 5px;
   font-family: "Rajdhani", sans-serif;
+}
+
+@media (max-width: 600px) {
+  .container {
+    align-items: flex-start;
+    padding: 88px 16px 24px;
+  }
+
+  .form-sec {
+    padding: 32px 24px;
+    border-radius: 12px;
+  }
+
+  .header-content {
+    padding: 16px;
+  }
+
+  .logo-img {
+    height: 40px;
+  }
+
+  .logo-title {
+    column-gap: 10px;
+  }
+
+  .logo-title span {
+    font-size: 23px;
+  }
+
+  .container-btn {
+    column-gap: 8px;
+  }
+
+  .header-content button {
+    height: 36px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  h2 {
+    font-size: 32px;
+  }
+
+  .head-sec {
+    padding-bottom: 24px;
+  }
+}
+
+@media (max-width: 430px) {
+  .logo-title span {
+    display: none;
+  }
+
+  .fname-lname {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding-inline: 12px;
+  }
+
+  .form-sec {
+    padding: 28px 20px;
+  }
+
+  .form-check {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sign-with {
+    gap: 10px;
+  }
+
+  .register {
+    gap: 10px;
+  }
+
+  .register span {
+    white-space: nowrap;
+  }
 }
 </style>
